@@ -6,6 +6,7 @@ Projects are developed in dedicated branches that follow the following naming co
 
 ### How to contribute
 
+- Navigate to the [board](https://github.com/users/mauro1998/projects/1) to see the state of pending tasks, feel free to assign one to yourself and move it to in-progress column
 - Clone this repo: `git clone https://github.com/mauro1998/Labs-Web-Experiment.git`
 - Switch to the main project branch you want to start contributing to; i.e. `git checkout project/pointing-pocker-app`
 - Install project dependencies
