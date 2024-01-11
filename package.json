@@ -1,0 +1,27 @@
+{
+  "name": "labs-web-experiment",
+  "version": "1.0.0",
+  "description": "labs web experiment",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "ppa:nest:start": "npm start -w packages/ppa-nest-api",
+    "ppa:start": "concurrently --kill-others \"npm:ppa:nest:start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauro1998/Labs-Web-Experiment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauro1998/Labs-Web-Experiment/issues"
+  },
+  "homepage": "https://github.com/mauro1998/Labs-Web-Experiment#readme",
+  "workspaces": [
+    "packages/ppa-nest-api"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
