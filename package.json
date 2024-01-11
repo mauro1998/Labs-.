@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "ppa:nest:start": "npm start -w packages/ppa-nest-api",
-    "ppa:start": "concurrently --kill-others \"npm:ppa:nest:start\""
+    "ppa:angular:start": "npm start -w packages/ppa-angular-client",
+    "ppa:angular:test": "npm test -w packages/ppa-angular-client",
+    "ppa:start": "concurrently --kill-others \"npm:ppa:nest:start\" \"npm:ppa:angular:start\""
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,8 @@
   },
   "homepage": "https://github.com/mauro1998/Labs-Web-Experiment#readme",
   "workspaces": [
-    "packages/ppa-nest-api"
+    "packages/ppa-nest-api",
+    "packages/ppa-angular-client"
   ],
   "devDependencies": {
     "concurrently": "^8.2.2"
