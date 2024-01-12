@@ -1,3 +1,3 @@
 export default {
-    preset: 'jest-preset-angular',
-  };
+  preset: 'jest-preset-angular',
+};
