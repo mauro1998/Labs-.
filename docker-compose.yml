@@ -1,0 +1,20 @@
+version: '3'
+services:
+  ppa-angular-client:
+    build:
+      context: ./packages/ppa-angular-client
+    container_name: ppa-angular-client
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./packages/ppa-angular-client/src:/app/src
+  ppa-nest-api: 
+    build: 
+      args:
+        name: ppa-nest-api
+      context: ./packages/ppa-nest-api
+    container_name: ppa-nest-api
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ./packages/ppa-nest-api/src:/app/src

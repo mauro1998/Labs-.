@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ppa-angular-client:
+    build:
+      args:
+        name: ppa-angular-client
+      context: ./packages/ppa-angular-client
+      dockerfile: Dockerfile.production
+    container_name: ppa-angular-client-prod
+    ports:
+      - '80:80'
+  ppa-nest-api: 
+    build: 
+      context: ./packages/ppa-nest-api
+      dockerfile: Dockerfile.production
+    container_name: ppa-nest-api-prod
+    ports: 
+      - '3000:3000'

@@ -1,0 +1,33 @@
+# Use Node.js image as a base image
+FROM node:20-alpine as builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the container
+COPY ./package*.json ./
+
+# Install dependencies
+RUN npm install
+RUN npm install -g @angular/cli
+
+# Copy the entire project to the container
+COPY ./ ./
+
+# Build the Angular application
+RUN npm run build
+
+# Use a minimal Nginx image as a base image
+FROM nginx:alpine
+
+# Use arg for app name (find correct dist folder)
+ARG name
+
+# Copy the built Angular app from the builder stage to the Nginx server
+COPY --from=builder /app/dist/${name}/browser /usr/share/nginx/html
+
+# Expose port 80 for the Nginx server
+EXPOSE 80
+
+# Start the Nginx server
+CMD ["nginx", "-g", "daemon off;"]
