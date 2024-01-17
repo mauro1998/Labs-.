@@ -42,3 +42,6 @@ packages/**/typings
 # System files
 packages/**/.DS_Store
 packages/**/Thumbs.db
+
+# Databases
+.db
