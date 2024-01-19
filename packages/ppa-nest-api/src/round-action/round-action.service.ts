@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { RoundActionModel } from './round_action.entity';
 import { CreateRoundActionDto } from './create-round-action.dto';
-import { UserModel } from 'src/user/user.entity';
+import { RoundActionModel } from './round-action.model';
+import { UserModel } from 'src/user/user.model';
 
 @Injectable()
 export class RoundActionService {

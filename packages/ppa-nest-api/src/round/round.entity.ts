@@ -1,66 +1,42 @@
-import {
-  AutoIncrement,
-  BelongsTo,
-  Column,
-  ForeignKey,
-  HasMany,
-  Model,
-  PrimaryKey,
-  Table,
-} from 'sequelize-typescript';
-import { Session, SessionModel } from '../session/session.entity';
-import {
-  RoundAction,
-  RoundActionModel,
-} from 'src/round-action/round_action.entity';
+import { RoundActionEntity } from 'src/round-action/round-action.entity';
+import { SessionEntity } from 'src/session/session.entity';
 
 export enum RoundStatus {
-  NotStarted = 0,
-  Started = 1,
-  Ended = 2,
+  NotStarted = 'not_started',
+  Started = 'started',
+  Ended = 'ended',
 }
 
-export interface Round {
-  id: number;
-  name: string;
-  topic: string;
-  status: RoundStatus;
-  endedAt: Date;
-  sessionId: number;
-  isFollowUpRound: boolean;
-  session: Session;
-  actions: RoundAction[];
-}
+export class RoundEntity {
+  public id: number;
+  public name: string;
+  public topic: string;
+  public status: RoundStatus;
+  public endedAt: Date;
+  public sessionId: number;
+  public isFollowUpRound: boolean;
+  public session?: SessionEntity;
+  public actions?: RoundActionEntity[];
 
-@Table
-export class RoundModel extends Model implements Round {
-  @PrimaryKey
-  @AutoIncrement
-  @Column
-  id: number;
-
-  @Column
-  name: string;
-
-  @Column
-  topic: string;
-
-  @Column({ defaultValue: RoundStatus.NotStarted })
-  status: number;
-
-  @Column
-  endedAt: Date;
-
-  @Column({ defaultValue: false })
-  isFollowUpRound: boolean;
-
-  @Column
-  @ForeignKey(() => SessionModel)
-  sessionId: number;
-
-  @BelongsTo(() => SessionModel)
-  session: SessionModel;
-
-  @HasMany(() => RoundActionModel)
-  actions: RoundActionModel[];
+  constructor(
+    id: number,
+    name: string,
+    topic: string,
+    status: RoundStatus,
+    endedAt: Date,
+    sessionId: number,
+    isFollowUpRound: boolean,
+    session?: SessionEntity,
+    actions?: RoundActionEntity[],
+  ) {
+    this.id = id;
+    this.name = name;
+    this.topic = topic;
+    this.status = status;
+    this.endedAt = endedAt;
+    this.sessionId = sessionId;
+    this.isFollowUpRound = isFollowUpRound;
+    this.session = session;
+    this.actions = actions;
+  }
 }

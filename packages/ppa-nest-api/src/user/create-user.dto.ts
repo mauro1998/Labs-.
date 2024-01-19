@@ -1,3 +1,7 @@
-import { User } from './user.entity';
+import { UserRole } from './user.entity';
 
-export type CreateUserDto = Pick<User, 'nickname' | 'role' | 'sessionId'>;
+export class CreateUserDto {
+  nickname: string;
+  role: UserRole;
+  sessionId: number;
+}

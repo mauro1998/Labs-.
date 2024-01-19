@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRoundDto } from './create-round.dto';
 import { InjectModel } from '@nestjs/sequelize';
-import { Round, RoundModel, RoundStatus } from './round.entity';
-import { RoundActionModel } from 'src/round-action/round_action.entity';
+import { RoundActionModel } from 'src/round-action/round-action.model';
+import { CreateRoundDto } from './create-round.dto';
+import { RoundEntity, RoundStatus } from './round.entity';
+import { RoundModel } from './round.model';
 
 @Injectable()
 export class RoundService {
@@ -27,7 +28,7 @@ export class RoundService {
   }
 
   updateStatus(id: number, status: RoundStatus) {
-    const updatedModel: Partial<Round> = { status };
+    const updatedModel: Partial<RoundEntity> = { status };
 
     if (status === RoundStatus.Ended) {
       updatedModel.endedAt = new Date();

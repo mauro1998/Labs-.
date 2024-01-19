@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { RoundActionController } from './round-action.controller';
-import { RoundActionService } from './round-action.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { RoundActionModel } from './round_action.entity';
+import { RoundActionController } from './round-action.controller';
+import { RoundActionModel } from './round-action.model';
+import { RoundActionService } from './round-action.service';
 
 @Module({
   imports: [SequelizeModule.forFeature([RoundActionModel])],

@@ -1,6 +1,6 @@
-import { RoundAction } from './round_action.entity';
+import { RoundActionEntity } from './round-action.entity';
 
 export type CreateRoundActionDto = Pick<
-  RoundAction,
+  RoundActionEntity,
   'roundId' | 'userId' | 'vote' | 'comment'
 >;
