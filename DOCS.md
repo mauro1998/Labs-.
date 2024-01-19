@@ -80,3 +80,12 @@ npm run ppa:start
 # start only ppa-nest-api (port 3000)
 npm run ppa:nest:start
 ```
+
+### Docker commands:
+```bash
+# run the application in development environment
+docker-compose up -d
+# run the application in production environment
+docker-compose -f "docker-compose.production.yml" up -d --build 
+```
+Or you can install the recommended VSCode extension for docker and run the docker-compose file manually
