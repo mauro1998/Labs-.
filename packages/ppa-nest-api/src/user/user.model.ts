@@ -43,6 +43,7 @@ export class UserModel extends BaseModel<UserEntity> {
       this.nickname,
       this.role,
       this.sessionId,
+      this.online,
       this.session?.toEntity(),
     );
   }

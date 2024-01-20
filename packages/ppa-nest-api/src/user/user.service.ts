@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Transaction } from 'sequelize';
+import { Op, Transaction } from 'sequelize';
 import { CreateUserDto } from './create-user.dto';
 import { UserModel } from './user.model';
 
@@ -23,10 +23,33 @@ export class UserService {
   }
 
   findOne(id: number) {
-    return this.user.findOne({ where: { id } });
+    return this.user.findOne({
+      include: { all: true },
+      where: { id },
+    });
   }
 
-  disconnect(id: number) {
-    return this.user.update({ online: false }, { where: { id } });
+  async isNicknameTaken(nickname: string, sessionId: number) {
+    const count = await this.user.count({
+      where: {
+        nickname: { [Op.like]: `%${nickname}%` },
+        sessionId,
+      },
+    });
+
+    return count > 0;
+  }
+
+  async exists(id: number) {
+    const count = await this.user.count({
+      where: { id },
+    });
+
+    return count > 0;
+  }
+
+  async setOnlineStatus(id: number, online: boolean) {
+    await this.user.update({ online }, { where: { id } });
+    return this.findOne(id);
   }
 }

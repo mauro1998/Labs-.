@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
@@ -35,9 +36,19 @@ export class SessionService {
         transaction,
       );
 
+      // create a simple md5 hash for this session
+      const hash = crypto
+        .createHash('shake256', { outputLength: 3 })
+        .update(`${organizer.nickname}|${newSession.id}`)
+        .digest('hex')
+        .toUpperCase();
+
       // set session organizer
       await this.sessionModel.update(
-        { startedByUserId: organizer.id },
+        {
+          startedByUserId: organizer.id,
+          hash,
+        },
         {
           where: { id: newSession.id },
           transaction,
@@ -69,10 +80,29 @@ export class SessionService {
     });
   }
 
+  findOneByHash(hash: string) {
+    return this.sessionModel.findOne({
+      where: { hash, status: SessionStatus.Active },
+    });
+  }
+
+  async exists(id: number) {
+    const count = await this.sessionModel.count({
+      where: {
+        id,
+        status: SessionStatus.Active,
+      },
+    });
+
+    return count > 0;
+  }
+
   async close(id: number) {
     await this.sessionModel.update(
       { status: SessionStatus.Ended },
       { where: { id } },
     );
+
+    return this.findOne(id);
   }
 }

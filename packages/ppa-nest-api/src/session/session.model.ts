@@ -19,6 +19,9 @@ export class SessionModel extends BaseModel<SessionEntity> {
   @Column
   id: number;
 
+  @Column
+  hash: string;
+
   @Column({ defaultValue: SessionStatus.Active })
   status: SessionStatus;
 
@@ -38,6 +41,7 @@ export class SessionModel extends BaseModel<SessionEntity> {
   toEntity(): SessionEntity {
     return new SessionEntity(
       this.id,
+      this.hash,
       this.status,
       this.startedByUserId,
       this.startedBy?.toEntity(),

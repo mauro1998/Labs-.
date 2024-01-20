@@ -8,6 +8,7 @@ export enum SessionStatus {
 
 export class SessionEntity {
   public id: number;
+  public hash: string;
   public status: SessionStatus;
   public startedByUserId: number;
   public startedBy?: UserEntity;
@@ -16,6 +17,7 @@ export class SessionEntity {
 
   constructor(
     id: number,
+    hash: string,
     status: SessionStatus,
     startedByUserId: number,
     startedBy?: UserEntity,
@@ -23,6 +25,7 @@ export class SessionEntity {
     members?: UserEntity[],
   ) {
     this.id = id;
+    this.hash = hash;
     this.status = status;
     this.startedByUserId = startedByUserId;
     this.startedBy = startedBy;
