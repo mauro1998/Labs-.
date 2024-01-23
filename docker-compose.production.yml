@@ -1,12 +1,12 @@
 version: '3'
 services:
-  ppa-angular-client:
+  ppa-angular:
     build:
       args:
         name: ppa-angular-client
-      context: ./packages/ppa-angular-client
+      context: ./packages/ppa-angular
       dockerfile: Dockerfile.production
-    container_name: ppa-angular-client-prod
+    container_name: ppa-angular-prod
     ports:
       - '80:80'
   ppa-nest-api: 

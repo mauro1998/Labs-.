@@ -18,4 +18,4 @@ COPY ./ ./
 EXPOSE 4200
 
 # Start the Angular development server
-CMD ["npm", "start"]
+CMD npm run start:docker
