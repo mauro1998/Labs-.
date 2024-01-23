@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { RoundActionService } from './round-action.service';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateRoundActionDto } from './create-round-action.dto';
+import { RoundActionService } from './round-action.service';
 
+@ApiTags('RoundAction')
 @Controller('round-action')
 export class RoundActionController {
   constructor(private readonly roundActionService: RoundActionService) {}

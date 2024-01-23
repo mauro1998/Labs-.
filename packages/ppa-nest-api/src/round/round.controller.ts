@@ -2,7 +2,9 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateRoundDto } from './create-round.dto';
 import { RoundStatus } from './round.entity';
 import { RoundService } from './round.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Round')
 @Controller('round')
 export class RoundController {
   constructor(private readonly roundService: RoundService) {}

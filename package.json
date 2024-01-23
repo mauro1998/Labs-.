@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "ppa:nest:start": "npm start -w packages/ppa-nest-api",
+    "ppa:nest:start": "npm run start -w packages/ppa-nest-api",
     "ppa:angular:start": "npm start -w packages/ppa-angular-client",
     "ppa:angular:test": "npm test -w packages/ppa-angular-client",
     "ppa:start": "concurrently --kill-others \"npm:ppa:nest:start\" \"npm:ppa:angular:start\""
