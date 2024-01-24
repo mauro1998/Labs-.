@@ -45,6 +45,7 @@ export class RoundActionModel extends BaseModel<RoundActionEntity> {
       this.comment,
       this.userId,
       this.roundId,
+      this.createdAt,
       this.user?.toEntity(),
       this.round?.toEntity(),
     );

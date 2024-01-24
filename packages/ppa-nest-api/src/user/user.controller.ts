@@ -18,11 +18,11 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get(':id')
+  @Get(':userId')
   @ApiNotFoundResponse()
   @ApiOkEntityResponse(UserEntity)
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    const user = await this.userService.findOne(id);
+  async findOne(@Param('userId', ParseIntPipe) userId: number) {
+    const user = await this.userService.findOne(userId);
 
     if (!user) {
       throw new NotFoundException();
@@ -31,32 +31,32 @@ export class UserController {
     return new SingleEntityResponseDto<UserEntity, UserModel>(user);
   }
 
-  @Put('reconnect/:id')
+  @Put('reconnect/:userId')
   @ApiNotFoundResponse()
   @ApiOkEntityResponse(UserEntity)
-  async reconnect(@Param('id', ParseIntPipe) id: number) {
-    const exists = await this.userService.exists(id);
+  async reconnect(@Param('userId', ParseIntPipe) userId: number) {
+    const exists = await this.userService.exists(userId);
 
     if (!exists) {
       throw new NotFoundException();
     }
 
-    const user = await this.userService.setOnlineStatus(id, true);
+    const user = await this.userService.setOnlineStatus(userId, true);
 
     return new SingleEntityResponseDto<UserEntity, UserModel>(user!);
   }
 
-  @Put('disconnect/:id')
+  @Put('disconnect/:userId')
   @ApiNotFoundResponse()
   @ApiOkEntityResponse(UserEntity)
-  async disconnect(@Param('id', ParseIntPipe) id: number) {
-    const exists = await this.userService.exists(id);
+  async disconnect(@Param('userId', ParseIntPipe) userId: number) {
+    const exists = await this.userService.exists(userId);
 
     if (!exists) {
       throw new NotFoundException();
     }
 
-    const user = await this.userService.setOnlineStatus(id, false);
+    const user = await this.userService.setOnlineStatus(userId, false);
 
     return new SingleEntityResponseDto<UserEntity, UserModel>(user!);
   }

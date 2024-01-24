@@ -79,11 +79,11 @@ export class SessionController {
     return new SingleEntityResponseDto<UserEntity, UserModel>(user);
   }
 
-  @Get(':id')
+  @Get(':sessionId')
   @ApiNotFoundResponse()
   @ApiOkEntityResponse(SessionEntity)
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    const session = await this.sessionService.findOne(id);
+  async findOne(@Param('sessionId', ParseIntPipe) sessionId: number) {
+    const session = await this.sessionService.findOne(sessionId);
 
     if (!session || session.status === SessionStatus.Ended) {
       throw new NotFoundException();
@@ -92,17 +92,17 @@ export class SessionController {
     return new SingleEntityResponseDto<SessionEntity, SessionModel>(session);
   }
 
-  @Delete('close/:id')
+  @Delete('close/:sessionId')
   @ApiNotFoundResponse()
   @ApiOkEntityResponse(SessionEntity)
-  async close(@Param('id', ParseIntPipe) id: number) {
-    const exists = await this.sessionService.exists(id);
+  async close(@Param('sessionId', ParseIntPipe) sessionId: number) {
+    const exists = await this.sessionService.exists(sessionId);
 
     if (!exists) {
       throw new NotFoundException();
     }
 
-    const session = await this.sessionService.close(id);
+    const session = await this.sessionService.close(sessionId);
 
     return new SingleEntityResponseDto<SessionEntity, SessionModel>(session!);
   }

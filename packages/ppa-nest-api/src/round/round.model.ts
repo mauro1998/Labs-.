@@ -3,14 +3,13 @@ import {
   BelongsTo,
   Column,
   ForeignKey,
-  HasMany,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { RoundActionModel } from 'src/round-action/round-action.model';
 import { SessionModel } from 'src/session/session.model';
 import { BaseModel } from 'src/util/base.model';
 import { RoundEntity, RoundStatus } from './round.entity';
+import { RoundVoteCountEntity } from './round-vote-count.entity';
 
 @Table
 export class RoundModel extends BaseModel<RoundEntity> {
@@ -29,6 +28,9 @@ export class RoundModel extends BaseModel<RoundEntity> {
   status: RoundStatus;
 
   @Column
+  startedAt: Date;
+
+  @Column
   endedAt: Date;
 
   @Column({ defaultValue: false })
@@ -41,8 +43,7 @@ export class RoundModel extends BaseModel<RoundEntity> {
   @BelongsTo(() => SessionModel)
   session: SessionModel;
 
-  @HasMany(() => RoundActionModel)
-  actions: RoundActionModel[];
+  votes: RoundVoteCountEntity[];
 
   toEntity(): RoundEntity {
     return new RoundEntity(
@@ -50,11 +51,12 @@ export class RoundModel extends BaseModel<RoundEntity> {
       this.name,
       this.topic,
       this.status,
+      this.startedAt,
       this.endedAt,
       this.sessionId,
       this.isFollowUpRound,
+      this.votes,
       this.session?.toEntity(),
-      this.actions?.map((action) => action.toEntity()),
     );
   }
 }

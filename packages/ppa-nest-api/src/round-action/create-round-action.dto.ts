@@ -1,6 +1,14 @@
-import { RoundActionEntity } from './round-action.entity';
+import { IsNotEmpty, IsOptional, Length } from 'class-validator';
 
-export type CreateRoundActionDto = Pick<
-  RoundActionEntity,
-  'roundId' | 'userId' | 'vote' | 'comment'
->;
+export class CreateRoundActionDto {
+  @IsNotEmpty()
+  userId: number;
+
+  @IsNotEmpty()
+  @Length(1, 3)
+  vote: string;
+
+  @IsOptional()
+  @Length(1, 180)
+  comment?: string;
+}

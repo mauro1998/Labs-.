@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Op, Transaction } from 'sequelize';
 import { CreateUserDto } from './create-user.dto';
 import { UserModel } from './user.model';
+import { UserRole } from './user.entity';
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,12 @@ export class UserService {
     return this.user.findOne({
       include: { all: true },
       where: { id },
+    });
+  }
+
+  findAll(sessionId: number, role?: UserRole) {
+    return this.user.findAll({
+      where: { sessionId, role },
     });
   }
 

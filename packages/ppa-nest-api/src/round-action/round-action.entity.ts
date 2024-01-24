@@ -7,6 +7,7 @@ export class RoundActionEntity {
   public comment: string;
   public userId: number;
   public roundId: number;
+  public createdAt: Date;
   public user?: UserEntity;
   public round?: RoundEntity;
 
@@ -16,6 +17,7 @@ export class RoundActionEntity {
     comment: string,
     userId: number,
     roundId: number,
+    createdAt: Date,
     user?: UserEntity,
     round?: RoundEntity,
   ) {
@@ -26,5 +28,6 @@ export class RoundActionEntity {
     this.roundId = roundId;
     this.user = user;
     this.round = round;
+    this.createdAt = createdAt;
   }
 }
