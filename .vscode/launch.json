@@ -9,5 +9,12 @@
       "preLaunchTask": "npm run ppa:angular:start",
       "url": "http://localhost:4200/"
     },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Debug PPA Nest App",
+      "port": 9229,
+      "restart": true
+    }
   ]
 }

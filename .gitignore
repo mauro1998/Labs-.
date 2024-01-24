@@ -46,3 +46,6 @@ packages/**/typings
 packages/**/.DS_Store
 packages/**/Thumbs.db
 .DS_Store
+
+# Databases
+.db

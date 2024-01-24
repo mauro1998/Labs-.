@@ -54,9 +54,18 @@ npm --version # v10.2.4
 # install nestjs
 npm i -g @nestjs/cli
 # add project/workspace to packages folder
-npm init -w ./packages/[name]
+npm init -w ./packages/ppa-nest-api
 # create nestjs app inside workspace
-nest new [name] --directory packages/[name] --skip-git --strict --package-manager npm
+nest new ppa-nest-api --directory packages/ppa-nest-api --skip-git --strict --package-manager npm
+
+------------------------
+# setup sqlite with sequelize orm
+npm i @nestjs/sequelize sequelize sequelize-typescript sqlite3 -w packages/ppa-nest-api
+npm i --save-dev @types/sequelize -w packages/ppa-nest-api
+
+------------------------
+# setup nestjs gateways with socket.io
+npm i --save @nestjs/websockets @nestjs/platform-socket.io -w packages/ppa-nest-api
 ```
 
 #### NPM available commands
