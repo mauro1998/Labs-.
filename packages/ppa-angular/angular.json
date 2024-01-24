@@ -10,33 +10,33 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/ppa-angular-client",
+      "sourceRoot": "projects/ppa-angular-client/src",
       "prefix": "ppa",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ppa-angular-client",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "projects/ppa-angular-client/src/index.html",
+            "browser": "projects/ppa-angular-client/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/ppa-angular-client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ppa-angular-client/src/favicon.ico",
+              "projects/ppa-angular-client/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/ppa-angular-client/src/styles.scss"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
+            "server": "projects/ppa-angular-client/src/main.server.ts",
             "prerender": true,
             "ssr": {
-              "entry": "server.ts"
+              "entry": "projects/ppa-angular-client/server.ts"
             }
           },
           "configurations": {
@@ -88,18 +88,53 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "configPath": "jest.config.ts",
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "./tsconfig.spec.json",
             "inlineStyleLanguage": ["scss"],
-            "globalMocks": ["styleTransform", "matchMedia", "getComputedStyle"],
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/ppa-angular-client/src/favicon.ico",
+              "projects/ppa-angular-client/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/ppa-angular-client/src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "ppa-angular-shared": {
+      "projectType": "library",
+      "root": "projects/ppa-angular-shared",
+      "sourceRoot": "projects/ppa-angular-shared/src",
+      "prefix": "ppa-shared",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ppa-angular-shared/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ppa-angular-shared/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ppa-angular-shared/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "tsConfig": "./tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "globalMocks": [
+              "getComputedStyle",
+              "styleTransform"
+            ]
           }
         }
       }

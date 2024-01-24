@@ -1,6 +1,8 @@
 node_modules
 packages/**/dist
+libs/**/dist
 packages/**/node_modules
+libs/**/node_modules
 
 # Compiled output
 packages/**/tmp
@@ -31,6 +33,7 @@ packages/**/yarn-error.log
 .history/*
 
 # Miscellaneous
+libs/**/.angular/cache
 packages/**/.angular/cache
 packages/**/.sass-cache/
 packages/**/connect.lock
@@ -42,6 +45,7 @@ packages/**/typings
 # System files
 packages/**/.DS_Store
 packages/**/Thumbs.db
+.DS_Store
 
 # Databases
 .db
