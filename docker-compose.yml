@@ -1,13 +1,14 @@
 version: '3'
 services:
-  ppa-angular-client:
+  ppa-angular:
     build:
-      context: ./packages/ppa-angular-client
-    container_name: ppa-angular-client
+      context: ./packages/ppa-angular
+    container_name: ppa-angular
     ports:
       - '4200:4200'
     volumes:
-      - ./packages/ppa-angular-client/src:/app/src
+      - ./packages/ppa-angular/projects/ppa-angular-client/src:/app/projects/ppa-angular-client/src
+      - ./packages/ppa-angular/projects/ppa-angular-shared/src:/app/projects/ppa-angular-shared/src
   ppa-nest-api: 
     build: 
       args:
